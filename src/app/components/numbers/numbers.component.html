@@ -1,0 +1,21 @@
+<div class="page">
+    <form #sortForm="ngForm" (ngSubmit)="sortNumbers()" class="form">
+        <div class="input">
+            <label>Enter numbers seperated by space e.g. '1 4 2'</label>
+            <input [(ngModel)]="inputNumbers" name="numbers" pattern="(-?\d+.?\d*\s*)*">
+        </div>
+        <div class="order">
+            <label>Sort order</label>
+            <div class="button-row">
+                <button type="button" (click)="selectAsc()" [ngClass]="{'selected': isAsc()}">Ascending</button>
+                <button type="button" (click)="selectDesc()" [ngClass]="{'selected': isDesc()}">Descending</button>
+            </div>
+        </div>
+        <button [disabled]="sortForm.invalid" class="sort-button">Sort</button>
+    </form>
+    <div class="error" *ngIf="sortForm.invalid">Invalid input</div>
+
+    <div class="output">
+        {{displayNumbers}}
+    </div>
+</div>
